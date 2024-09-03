@@ -3,11 +3,11 @@ package com.project.system.service;
 import com.project.system.dto.UserQueryResponseDTO;
 import com.project.system.model.User;
 import com.project.system.model.UserQuery;
-import com.project.system.model.UserQueryResponse;
 import com.project.system.repository.UserQueryRepository;
 import com.project.system.repository.UserQueryResponseRepository;
 import com.project.system.repository.UserRepository;
 import com.project.system.request.SubmitUserQueryResponseRequest;
+import com.project.system.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +36,12 @@ public class UserQueryResponseServiceImpl implements UserQueryResponseService {
         Optional<User> responder = userRepository.findById(request.getResponderId());
 
         if (userQuery.isPresent() && responder.isPresent()) {
-            UserQueryResponse response = new UserQueryResponse(
+            ApiResponse.UserQueryResponse response = new ApiResponse.UserQueryResponse(
                     userQuery.get(),
                     responder.get(),
                     request.getResponseMessage()
             );
-            UserQueryResponse savedResponse = userQueryResponseRepository.save(response);
+            ApiResponse.UserQueryResponse savedResponse = userQueryResponseRepository.save(response);
             return new UserQueryResponseDTO(
                     savedResponse.getUserQuery().getId(),
                     savedResponse.getRespondedBy().getUsername(),

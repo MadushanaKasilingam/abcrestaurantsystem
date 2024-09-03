@@ -52,10 +52,24 @@ public class AdminOfferController {
     @GetMapping("/restaurant/{restaurantId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<OfferListResponse> getAllOffersByRestaurant(@PathVariable Long restaurantId) {
+        OfferListResponse response = new OfferListResponse();
+
+        if (restaurantId == null) {
+            response.setMessage("Restaurant ID is required");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
         List<Offer> offers = offerService.getAllOffersByRestaurant(restaurantId);
-        OfferListResponse response = new OfferListResponse("Offers retrieved successfully", offers);
-        return ResponseEntity.ok(response);
+        if (offers == null || offers.isEmpty()) {
+            response.setMessage("No offers found for restaurant ID: " + restaurantId);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        response.setMessage("Offers retrieved successfully");
+        response.setOffers(offers);  // Corrected this line
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")

@@ -1,6 +1,7 @@
 package com.project.system.response;
 
 import com.project.system.model.Offer;
+
 import java.util.List;
 
 public class OfferListResponse {
@@ -8,6 +9,8 @@ public class OfferListResponse {
     private List<Offer> offers;
 
     // Constructor
+    public OfferListResponse() {}
+
     public OfferListResponse(String message, List<Offer> offers) {
         this.message = message;
         this.offers = offers;
@@ -30,4 +33,3 @@ public class OfferListResponse {
         this.offers = offers;
     }
 }
-

@@ -23,14 +23,21 @@ public class JwtProvider {
         Collection<? extends GrantedAuthority> authorities = auth.getAuthorities();
         String roles = populateAuthorities(authorities);
 
+        // 1 year in milliseconds: 365 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+        long oneYearInMillis = 365L * 24 * 60 * 60 * 1000;
+
+        // Uncomment one of the following lines depending on the desired validity period
+
+        // For 1 year validity
         String jwt = Jwts.builder()
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(new Date().getTime() + 96400000)) // Token valid for 1 day
+                .setExpiration(new Date(new Date().getTime() + oneYearInMillis)) // Token valid for 1 year
                 .claim("username", auth.getName())
                 .claim("authorities", roles)
                 .claim("userId", userId) // Add userId to the token claims
                 .signWith(key)
                 .compact();
+
 
         return jwt;
     }
