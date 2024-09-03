@@ -1,5 +1,6 @@
 package com.project.system.service;
 
+import com.project.system.dto.FacilityResponseDTO;
 import com.project.system.model.Facility;
 import com.project.system.model.Restaurant;
 import com.project.system.repository.FacilityRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FacilityServiceImpl implements FacilityService {
@@ -19,6 +21,8 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+
 
     @Override
     public Facility createFacility(FacilityRequest facilityRequest) {
@@ -76,8 +80,13 @@ public class FacilityServiceImpl implements FacilityService {
     }
 
     @Override
-    public List<Facility> searchFacilities(String keyword) {
-        return facilityRepository.findByNameContaining(keyword);
+    public List<FacilityResponseDTO> searchFacilities(String keyword) {
+        return facilityRepository.findByNameContaining(keyword).stream()
+                .map(facility -> new FacilityResponseDTO(
+                        facility.getName(),
+                        facility.getDescription(),
+                        facility.getRestaurant().getName())) // Assuming getRestaurant() returns the Restaurant object
+                .collect(Collectors.toList());
     }
 
     @Override

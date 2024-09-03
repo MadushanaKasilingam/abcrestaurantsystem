@@ -1,8 +1,10 @@
 package com.project.system.service;
 
+import com.project.system.dto.CategoryDto;
 import com.project.system.model.Category;
 import com.project.system.model.Food;
 import com.project.system.model.Restaurant;
+import com.project.system.repository.CategoryRepository;
 import com.project.system.repository.FoodRepository;
 import com.project.system.request.CreateFoodRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class FoodServiceImp implements FoodService {
 
     @Autowired
     private FoodRepository foodRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public Food createFood(CreateFoodRequest request, Restaurant restaurant, Category category) throws Exception {
@@ -121,4 +126,6 @@ public class FoodServiceImp implements FoodService {
 
         return foodRepository.save(food);
     }
+
+
 }

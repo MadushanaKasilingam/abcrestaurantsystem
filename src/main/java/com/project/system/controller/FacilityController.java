@@ -1,7 +1,10 @@
 package com.project.system.controller;
 
+import com.project.system.dto.FacilityResponseDTO;
 import com.project.system.model.Facility;
 import com.project.system.response.ApiResponse;
+import com.project.system.response.MessageResponse;
+import com.project.system.response.ResponseData;
 import com.project.system.service.FacilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,19 +21,16 @@ public class FacilityController {
     private FacilityService facilityService;
 
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse> searchFacilities(@RequestParam String keyword) {
-        ApiResponse response = new ApiResponse();
-
-        if (keyword == null || keyword.trim().isEmpty()) {
-            response.setMessage("Search keyword is required");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> searchFacility(@RequestParam("keyword") String keyword) {
+        try {
+            List<FacilityResponseDTO> facilities = facilityService.searchFacilities(keyword);
+            if (facilities.isEmpty()) {
+                return ResponseEntity.ok(new MessageResponse("No facilities found."));
+            }
+            return ResponseEntity.ok(new ResponseData<>(facilities, "Facilities retrieved successfully"));
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(new MessageResponse("An error occurred while searching for facilities."));
         }
-
-        List<Facility> facilities = facilityService.searchFacilities(keyword);
-        response.setMessage("Facilities retrieved successfully");
-        response.setData(facilities);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

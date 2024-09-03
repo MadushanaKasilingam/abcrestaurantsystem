@@ -1,5 +1,6 @@
 package com.project.system.service;
 
+import com.project.system.dto.CategoryDto;
 import com.project.system.model.Food;
 import com.project.system.model.Category;
 import com.project.system.model.Restaurant;
@@ -24,4 +25,6 @@ public interface FoodService {
     Food getFoodById(Long id) throws Exception;
 
     Food updateFood(Long id, CreateFoodRequest foodRequest) throws Exception;
+
+
 }
