@@ -13,6 +13,7 @@ public interface FacilityRepository extends JpaRepository<Facility, Long> {
     boolean existsByNameAndRestaurant(String name, Restaurant restaurant);
 
     List<Facility> findByNameContaining(String keyword);
+    
 
     List<Facility> findByRestaurantId(Long restaurantId);
 

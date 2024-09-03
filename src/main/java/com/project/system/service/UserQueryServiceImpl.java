@@ -6,6 +6,8 @@ import com.project.system.request.SubmitUserQueryRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserQueryServiceImpl implements UserQueryService {
 
@@ -22,5 +24,8 @@ public class UserQueryServiceImpl implements UserQueryService {
         return userQueryRepository.save(userQuery);
     }
 
-
+    @Override
+    public List<UserQuery> getAllUserQueries() {
+        return userQueryRepository.findAll();
+    }
 }

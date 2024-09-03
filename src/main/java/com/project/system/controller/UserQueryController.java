@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user-queries")
 public class UserQueryController {
@@ -24,5 +26,9 @@ public class UserQueryController {
         return ResponseEntity.ok(userQuery);
     }
 
-
+    @GetMapping("/all")
+    public ResponseEntity<List<UserQuery>> getAllUserQueries() {
+        List<UserQuery> userQueries = userQueryService.getAllUserQueries();
+        return ResponseEntity.ok(userQueries);
+    }
 }

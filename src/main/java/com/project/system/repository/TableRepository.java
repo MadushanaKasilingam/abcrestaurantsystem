@@ -11,4 +11,5 @@ public interface TableRepository extends JpaRepository<DineinTable, Long> {
     List<DineinTable> findByRestaurantIdIn(List<Long> restaurantIds);
     List<DineinTable> findByRestaurantId(Long restaurantId);
     List<DineinTable> findAvailableTablesByRestaurantId(Long restaurantId);
+
 }

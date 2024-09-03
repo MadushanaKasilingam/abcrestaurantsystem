@@ -4,8 +4,9 @@ import com.project.system.model.User;
 
 public interface UserService {
 
-    public User findUserByJwtToken(String jwt) throws Exception;
+    User findUserByJwtToken(String jwt) throws Exception;
 
-    public User findUserByUsername(String username) throws Exception;
+    User findUserByUsername(String username) throws Exception;
+
+    User findUserById(Long id) throws Exception; // New method to find a user by ID
 }
-

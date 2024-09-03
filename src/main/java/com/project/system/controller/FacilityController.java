@@ -33,21 +33,7 @@ public class FacilityController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/restaurant/{restaurantId}")
-    public ResponseEntity<ApiResponse> getRestaurantFacilities(@PathVariable Long restaurantId) {
-        ApiResponse response = new ApiResponse();
 
-        if (restaurantId == null) {
-            response.setMessage("Restaurant ID is required");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-        }
-
-        List<Facility> facilities = facilityService.getFacilitiesByRestaurantId(restaurantId);
-        response.setMessage("Facilities retrieved successfully");
-        response.setData(facilities);
-
-        return new ResponseEntity<>(response, HttpStatus.OK);
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse> getFacilityById(@PathVariable Long id) {
@@ -75,4 +61,27 @@ public class FacilityController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/restaurant/{restaurantId}")
+    public ResponseEntity<ApiResponse> getFacilitiesByRestaurantId(@PathVariable Long restaurantId) {
+        ApiResponse response = new ApiResponse();
+
+        if (restaurantId == null) {
+            response.setMessage("Restaurant ID is required");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        List<Facility> facilities = facilityService.getFacilitiesByRestaurantId(restaurantId);
+        if (facilities == null || facilities.isEmpty()) {
+            response.setMessage("No facilities found for restaurant ID: " + restaurantId);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+
+        response.setMessage("Facilities retrieved successfully");
+        response.setData(facilities);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }
+
+

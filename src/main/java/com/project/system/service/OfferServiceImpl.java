@@ -54,8 +54,11 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public List<Offer> getAllOffersByRestaurant(Long restaurantId) {
-        return offerRepository.findByRestaurantId(restaurantId);
+        List<Offer> offers = offerRepository.findByRestaurantId(restaurantId);
+        System.out.println("Offers found: " + offers.size());
+        return offers;
     }
+
 
     @Override
     public Offer getOfferById(Long id) {

@@ -69,8 +69,6 @@ public class TableController {
         return new ResponseEntity<>(dineinTables, HttpStatus.OK);
     }
 
-    // Add this method to TableController.java
-
     @PutMapping("/{id}")
     public ResponseEntity<?> updateDineinTable(
             @PathVariable Long id, @RequestBody DineinTable dineinTable
@@ -81,7 +79,13 @@ public class TableController {
             return new ResponseEntity<>(updatedTable, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
-        }}
+        }
 
 
     }
+    @GetMapping("/by-restaurant/{restaurantId}")
+    public ResponseEntity<List<DineinTable>> getTablesByRestaurantId(@PathVariable Long restaurantId) {
+        List<DineinTable> dineinTables = tableService.findTablesByRestaurantId(restaurantId);
+        return new ResponseEntity<>(dineinTables, HttpStatus.OK);
+    }
+}

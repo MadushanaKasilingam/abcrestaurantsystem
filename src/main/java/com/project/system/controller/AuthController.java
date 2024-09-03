@@ -147,6 +147,7 @@ public class AuthController {
 
         return new ResponseEntity<>(staffList, HttpStatus.OK);
     }
+
     @GetMapping("/getStaffById/{id}")
     public ResponseEntity<User> getStaffById(@PathVariable Long id) {
         // Check if the current user is an admin
@@ -163,8 +164,6 @@ public class AuthController {
 
         return new ResponseEntity<>(staffMember, HttpStatus.OK);
     }
-
-
 
     // Customer/Restaurant Owner Signup
     @PostMapping("/signup")
@@ -193,10 +192,14 @@ public class AuthController {
 
             User savedUser = userRepository.save(createdUser);
 
-            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
-            String jwt = jwtProvider.generateToken(authentication);
+            // Fetch the user ID
+            Long userId = savedUser.getId(); // Assuming User has a getId() method
+
+            // Pass userId to generateToken
+            String jwt = jwtProvider.generateToken(authentication, userId);
 
             authResponse.setJwt(jwt);
             authResponse.setMessage("Registration successful");
@@ -232,8 +235,12 @@ public class AuthController {
             Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
             String role = authorities.isEmpty() ? null : authorities.iterator().next().getAuthority();
 
+            // Fetch the user ID from the UserRepository or another service
+            User user = userRepository.findByUsername(username);
+            Long userId = user != null ? user.getId() : null;
+
             // Generate a JWT for the authenticated user
-            String jwt = jwtProvider.generateToken(authentication);
+            String jwt = jwtProvider.generateToken(authentication, userId);
 
             authResponse.setJwt(jwt);
             authResponse.setMessage("Login successful");
@@ -250,18 +257,11 @@ public class AuthController {
         }
     }
 
-    // Helper method to authenticate a user
     private Authentication authenticate(String username, String password) {
         UserDetails userDetails = customerUserDetailsService.loadUserByUsername(username);
-
-        if (userDetails == null) {
-            throw new BadCredentialsException("Invalid username");
+        if (userDetails == null || !passwordEncoder.matches(password, userDetails.getPassword())) {
+            throw new BadCredentialsException("Invalid username or password");
         }
-
-        if (!passwordEncoder.matches(password, userDetails.getPassword())) {
-            throw new BadCredentialsException("Invalid password");
-        }
-
-        return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        return new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
     }
 }

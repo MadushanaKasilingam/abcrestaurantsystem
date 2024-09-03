@@ -15,8 +15,7 @@ public interface TableService {
     void deleteTable(Long id) throws Exception;
     List<DineinTable> findTablesByRestaurantName(String restaurantName);
     DineinTable updateDineinTable(DineinTable dineinTable) throws Exception;
-
-
+    List<DineinTable> findTablesByRestaurantId(Long restaurantId);
     // New method to be added
     List<DineinTable> getAvailableTablesForRestaurant(Long restaurantId, LocalDateTime reservationTime, int duration);
 }

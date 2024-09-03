@@ -105,25 +105,24 @@ public class TableServiceImpl implements TableService {
                 restaurants.stream().map(Restaurant::getId).toList()
         );
     }
-        @Override
-        public DineinTable updateDineinTable(DineinTable dineinTable) throws Exception {
-            DineinTable existingTable = findTableById(dineinTable.getId());
 
-            if (existingTable == null) {
-                throw new Exception("Table not found with id " + dineinTable.getId());
-            }
+    @Override
+    public DineinTable updateDineinTable(DineinTable dineinTable) throws Exception {
+        DineinTable existingTable = findTableById(dineinTable.getId());
 
-            // Update fields (assuming all fields are updatable)
-            existingTable.setAvailable(dineinTable.isAvailable());
-            existingTable.setRestaurantId(dineinTable.getRestaurantId());
-            existingTable.setSeats(dineinTable.getSeats());
-            existingTable.setTableNumber(dineinTable.getTableNumber());
-
-            // Save the updated table
-            return save(existingTable);
+        if (existingTable == null) {
+            throw new Exception("Table not found with id " + dineinTable.getId());
         }
 
+        // Update fields (assuming all fields are updatable)
+        existingTable.setAvailable(dineinTable.isAvailable());
+        existingTable.setRestaurantId(dineinTable.getRestaurantId());
+        existingTable.setSeats(dineinTable.getSeats());
+        existingTable.setTableNumber(dineinTable.getTableNumber());
 
+        // Save the updated table
+        return save(existingTable);
+    }
 
     @Override
     public List<DineinTable> getAvailableTablesForRestaurant(Long restaurantId, LocalDateTime reservationTime, int duration) {
@@ -140,8 +139,10 @@ public class TableServiceImpl implements TableService {
                 })
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<DineinTable> findTablesByRestaurantId(Long restaurantId) {
+        return tableRepository.findByRestaurantId(restaurantId);
+    }
+
 }
-
-
-
-
