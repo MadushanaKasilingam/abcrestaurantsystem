@@ -15,4 +15,6 @@ public interface CategoryService {
     Category updateCategory(Long id, String name, Long restaurantId) throws Exception;
 
     void deleteCategory(Long id) throws Exception;
+
+    List<Category> getAllCategories() throws Exception;
 }

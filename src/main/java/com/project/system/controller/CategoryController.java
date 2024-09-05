@@ -88,6 +88,16 @@ public class CategoryController {
         }
     }
 
+    @GetMapping("/categories/all")
+    public ResponseEntity<List<Category>> getAllCategories() {
+        try {
+            List<Category> categories = categoryService.getAllCategories();  // Ensure this matches the method in service
+            return ResponseEntity.ok(categories);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);  // Handle exception as needed
+        }
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException ex) {
         List<String> errors = ex.getBindingResult()

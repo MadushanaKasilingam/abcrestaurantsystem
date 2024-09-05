@@ -77,4 +77,11 @@ public class CategoryServiceImp implements CategoryService {
         Category category = getCategoryById(id);
         categoryRepository.delete(category);
     }
+
+    @Override
+    public List<Category> getAllCategories() throws Exception {
+        // Return all categories
+        return categoryRepository.findAll();
+    }
+
 }
