@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b141c;
+            --secondary-color: #f3961c;
+            --light-gray-color: #f2f2f2;
+            --medium-gray-color: #444242;
+        }
+
+        body {
+            background-color: var(--light-gray-color);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            margin-bottom: 30px;
+            background-color: var(--primary-color);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .card-text {
+            color: var(--medium-gray-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #e68a1e;
+            border-color: #e68a1e;
+        }
+
+        .display-4 {
+            color: var(--primary-color);
+            font-family: "Lobster", sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-top: 50px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .col-md-6 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-wrapper {
+            width: 100%;
+            max-width: 500px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check for token in local storage
+            const token = localStorage.getItem('jwt');
+            if (!token) {
+                window.location.href = 'login.html'; // Redirect to login if no token
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('jwt'); // Clear JWT token
+            window.location.href = 'login.html'; // Redirect to the login page
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Staff Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="main-link" class="nav-link" href="index.html">Go to Main</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout-link" class="nav-link" href="#" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Welcome to Staff Panel</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Go to Reservations</h5>
+                            <p class="card-text">View and manage all reservations made by customers.</p>
+                            <a href="view-reservation.html" class="btn btn-primary">Go to Reservations</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Go to Query Management</h5>
+                            <p class="card-text">Manage customer queries and respond to their concerns.</p>
+                            <a href="query-response.html" class="btn btn-primary">Go to Query Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

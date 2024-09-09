@@ -1,0 +1,812 @@
+/* Google Fonts Link */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Miniver&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  /* Colors */
+  --white-color: #fff;
+  --dark-color: #252525;
+  --primary-color: #3b141c;
+  --secondary-color: #f3961c;
+  --light-gray-color: #f2f2f2;
+  --medium-gray-color: #ccc;
+
+  /* Font weight */
+  --font-weight-n: 400;
+  --font-weight-m: 500;
+  --font-weight-s: 600;
+  --font-weight-b: 700;
+
+  /* Font Size */
+  --font-size-s: 1rem;
+  --font-size-m: 1.13rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 2.16rem;
+  --font-size-xxl: 2.25rem;
+
+  /* Border Radius */
+  --border-radius-s: 8px;
+  --border-radius-m: 30px;
+  --border-radius-circle: 50%;
+
+  /* Site max width */
+  --site-max-width: 1300px;
+
+  
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--white-color);
+}
+
+/* Setting for the whole website */
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.section-container {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: var(--site-max-width);
+}
+
+.section-title {
+  text-align: center;
+  padding: 60px 0 100px;
+  font-size: var(--font-size-xl);
+  text-transform: uppercase;
+}
+
+.section-title::after {
+  content: '';
+  width: 80px;
+  background: var(--secondary-color);
+  height: 5px;
+  display: block;
+  margin: 7px auto 0;
+  border-radius: var(--border-radius-s);
+}
+
+/* Styling for the header section */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  background: var(--primary-color);
+}
+
+.nav {
+  max-width: var(--site-max-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.nav-logo .logo-image {
+  height: 50px; /* Adjust height as needed */
+  width: auto;  /* Maintains aspect ratio */
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav .nav-menu {
+  display: flex;
+  gap: 5px;
+ 
+}
+
+.nav .nav-menu .nav-item .nav-link {
+  display: block;
+  padding: 10px 20px;
+  color: var(--white-color);
+  font-weight: var(--font-weight-n);
+  font-size: 22px;
+  font-family: "Cormorant Garamond", serif;
+  border-radius: var(--border-radius-m);
+  transition: 0.3s ease;
+}
+
+.nav .nav-menu .nav-item .nav-link:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+#open-menu-button, #close-menu-button {
+  font-size: var(--font-size-l);
+  color: var(--white-color);
+  cursor: pointer;
+  display: none;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  background-image: url(images/head2.jpg);
+}
+
+.hero-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 0;
+  padding-top: 85.12px;
+  min-height: calc(100vh - 85.12px);
+}
+
+.hero-container .hero-details .hero-title {
+  font-size: 70px;
+  color: var(--secondary-color);
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.hero-container .hero-details .hero-subtitle {
+  font-size: 60px;
+  color: var(--white-color);
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+.hero-container .hero-details .hero-description {
+  font-family: "Qwitcher Grypen", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
+  color: var(--white-color);
+  margin: 24px 0 40px;
+  max-width: 70%;
+}
+
+.hero-container .hero-buttons {
+  display: flex;
+  gap: 24px;
+}
+
+.hero-container .hero-buttons .button {
+  padding: 8px 28px;
+  border: 2.08px solid transparent;
+  outline: none;
+  cursor: pointer;
+  border-radius: var(--border-radius-m);
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-s);
+  transition: 0.3s ease;
+}
+
+.hero-container .hero-buttons .contact-us-button {
+  color: var(--white-color);
+  border-color: var(--white-color);
+  background: none;
+}
+
+.hero-container .hero-buttons .contact-us-button:hover {
+  color: var(--primary-color);
+  border-color: var(--secondary-color);
+  background: var(--secondary-color);
+}
+
+.hero-container .hero-buttons .order-now-button:hover {
+  color: var(--white-color);
+  border-color: var(--white-color);
+  background: none;
+}
+
+.hero-container .hero-image-wrapper {
+  max-width: 200%;
+  perspective: 1000px;
+}
+
+.hero-container .hero-image-wrapper .hero-image {
+  width: 105%;
+  animation: rotateImageClockwise 10s infinite linear;
+  transform-origin: center;
+}
+
+@keyframes rotateImageClockwise {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* Main section styling */
+.cuisine-highlights {
+  padding: 100px 20px 120px;
+  background: var(--light-gray-color);
+  text-align: center;
+  font-family: 'Poppins', sans-serif; /* Default font for the section */
+}
+
+/* Container that holds all the highlights */
+.cuisine-highlights .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: stretch; /* Ensure all children are the same height */
+}
+
+/* Individual highlight boxes */
+.cuisine-highlights .highlight {
+  flex: 1;
+  padding: 30px;
+  background-color: white;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+  opacity: 0;
+  transform: translateY(100px);
+  display: flex; /* Allow for flexible content alignment */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Hover effect */
+.cuisine-highlights .highlight:hover {
+  background-color: #ffb14c;
+  color: white;
+}
+
+/* Titles of each highlight */
+.cuisine-highlights .highlight-title {
+  margin-bottom: 15px;
+  font-size: 1.8em;
+  font-weight: bold;
+  font-family: "Baskervville SC", serif; /* Font for headings */
+}
+
+/* Text in each highlight */
+.cuisine-highlights .highlight-text {
+  font-size: 1.1em;
+  line-height: 1.5;
+  font-family: "Crimson Text", serif; /* Font for paragraph text */
+}
+
+/* Animation delay for each container */
+.cuisine-highlights .highlight:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.cuisine-highlights .highlight:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.cuisine-highlights .highlight:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.cuisine-highlights .highlight:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* Apply smooth transition when visible */
+.cuisine-highlights .highlight.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Container for both text and image */
+.history {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 100px;
+  overflow: hidden;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+/* Updated text section with thin black border */
+.historytext-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30px;
+  margin-left: 50px;
+  border: 2px solid black; /* Thin black border */
+  border-radius: 20px;
+  transform: translateX(-100%); /* Start off-screen to the left */
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Text section transition effect when in view */
+.historytext-section.in-view {
+  transform: translateX(0); /* Slide into view */
+  opacity: 1;
+}
+
+/* Title and paragraph styling */
+.historytext-section h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  transition: color 0.5s ease;
+}
+
+.historytext-section p {
+  font-size: 23px;
+  line-height: 1.6;
+  color: #7c7676;
+  font-family: "Cormorant Garamond", serif;
+  transition: color 0.5s ease;
+}
+
+/* Image section aligned to the right */
+.historyimage-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%); /* Start off-screen to the right */
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Image section transition effect when in view */
+.historyimage-section.in-view {
+  transform: translateX(0); /* Slide into view */
+  opacity: 1;
+}
+
+/* Image styling */
+.historyimage-section img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  max-height: 80vh;
+  margin-left: 30pt;
+  border-radius: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+
+
+
+
+.box {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background-color: #000000;
+  overflow: hidden;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.image-section img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+  max-height: 80vh;
+  margin-left: 30pt;
+  border-radius: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.text-section {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 30px;
+  border-radius: 20px;
+  
+}
+
+.text-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #fffcfc;
+  font-family: "Playwrite CU", cursive;
+  font-optical-sizing: auto;
+  transition: color 0.5s ease;
+}
+
+.text-section p {
+  font-size: 25px;
+  line-height: 1.6;
+  color: #efefef;
+  font-family: "Cormorant Garamond", serif;
+  transition: color 0.5s ease;
+}
+
+/* Hover Effects */
+.container:hover .image-section img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.container:hover .text-section {
+  background-color: #ddd;
+  transform: translateX(10px);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.container:hover .text-section h1 {
+  color: #555;
+}
+
+.container:hover .text-section p {
+  color: #999;
+}
+
+/*meals*/
+
+#special-meals {
+  padding: 50px;
+  background-image: url(images/back2.jpg);
+}
+
+#special-meals h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  font-family: "Playwrite CU", cursive;
+  text-decoration:bold;
+  color: #070707;
+
+}
+
+.meal {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.meal-text {
+  flex: 1;
+  padding: 20px;
+}
+
+.meal-text h3 {
+  font-size: 60px;
+  font-family: "Baskervville SC", serif; /* Font for headings */
+  color: #2d0202;
+}
+
+.meal-text p {
+  font-size: 28px;
+  color: #232222;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.meal-image {
+  flex: 1;
+  
+}
+
+.meal-image img {
+  width: 70%;
+  height: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+  .meal {
+    flex-direction: column;
+  }
+
+  .reverse {
+    flex-direction: column;
+  }
+
+  .meal-image {
+    margin-top: 20px;
+  }
+}
+
+/* Reservation Section */
+.reservation-section {
+  background: #f9f9f9;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: var(--border-radius-m);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.reservation-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-family: "Lobster", sans-serif;
+}
+
+.reservation-text {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+.book-table-button {
+  padding: 10px 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius-s);
+  background: var(--secondary-color);
+  color: var(--white-color);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-m);
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.book-table-button:hover {
+  background: var(--white-color);
+  color: var(--secondary-color);
+}
+
+
+/* Query Section */
+.query-section {
+  background: #ffffff;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: var(--border-radius-m);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.query-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-family: "Lobster", sans-serif;
+}
+
+.query-text {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+  margin-bottom: 20px;
+}
+
+.submit-query-button {
+  padding: 10px 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius-s);
+  background: var(--secondary-color);
+  color: var(--white-color);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-m);
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.submit-query-button:hover {
+  background: var(--white-color);
+  color: var(--secondary-color);
+}
+
+/* Facility Section */
+.facility-section {
+  background: #e9ecef;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: var(--border-radius-m);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.facility-search-form {
+  margin-top: 20px;
+}
+
+.facility-search-form input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius-s);
+  background: var(--secondary-color);
+  color: var(--white-color);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-m);
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.facility-results {
+  margin-top: 20px;
+  font-size: 17px;
+
+ 
+}
+
+.facility-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  
+}
+
+.facility-item h3 {
+  margin-bottom: 5px;
+  
+}
+
+.facility-item p {
+  font-size: 14px;
+ 
+}
+
+
+.facility-title {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-size: 60px;
+  font-family: "Lobster", sans-serif;
+}
+
+.facility-text {
+  font-size: 1.2rem;
+  color: var(--dark-color);
+  max-width: 1100px;
+  font-size: 30px;
+  font-family: "Cormorant Garamond", serif;
+  margin: 0 auto;
+}
+
+
+/* Footer Section */
+.footer {
+  background: #1b1b1b;
+  color: var(--white-color);
+  padding: 30px 20px;
+}
+
+.footer-section {
+  display: flex;
+  justify-content: space-between;
+  font-style: var(--font-size-m);
+}
+
+.footer-section a {
+  color: var(--white-color);
+}
+
+.footer-section a:hover {
+  color: var(--secondary-color);
+}
+
+.footer-section .social-icon {
+  display: flex;
+  gap: 25px;
+}
+
+.footer-section .social-icon i {
+  cursor: pointer;
+  font-size: var(--font-size-l);
+  transition: 0.3s ease;
+}
+
+.footer-section .social-icon i:hover {
+  color: var(--secondary-color);
+}
+
+.footer-section .footer-policies {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-section .footer-policies i {
+  font-size: 10px;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .hero-container {
+    flex-direction: column;
+  }
+
+  .menu-section .menu-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-container .menu-items {
+    text-align: center;
+  }
+
+  .footer-container .footer-links {
+    flex-direction: column;
+    
+  }
+
+  .footer-container .footer-social {
+    justify-content: center;
+  }
+}
+
+/* Show the highlights with animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .reservation-section, .query-section, .facility-section {
+    padding: 20px;
+  }
+
+  .reservation-title, .query-title, .facility-title {
+    font-size: 2rem;
+  }
+
+  .reservation-text, .query-text, .facility-text {
+    font-size: 1rem;
+  }
+}
+

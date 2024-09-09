@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <title>Offers Management</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #3b141c;
+            font-family: "Lobster", sans-serif;
+            font-size: 45px;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background-color: #f3961c;
+            color: white;
+            display: block;
+            border-radius: .5rem;
+            margin-top: 1rem;
+            font-size: 17px;
+            padding: 1rem 3rem;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        .restaurant-list {
+            margin-top: 20px;
+        }
+        .restaurant-item {
+            background-color: #e9ecef;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+        .restaurant-item h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+        .offer-item {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .offer-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .offer-actions .btn {
+            background-color: #f0ad4e;
+        }
+        .offer-actions .btn:hover {
+        background-color: #f3961c;
+        }
+        .offer-actions .btn-delete {
+            background-color: #d9534f;
+        }
+        .offer-actions .btn-delete:hover {
+            background-color: #c9302c;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+        }
+        .modal-content input,
+        .modal-content select,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .modal-content label {
+            margin-bottom: 5px;
+            display: block;
+            font-weight: bold;
+        }
+        .success-message {
+            color: #3b141c;
+            font-size: 16px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .error-message {
+            color: #3b141c;
+            font-size: 16px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .navbar {
+            background-color: #3b141c;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .navbar .nav-left, .navbar .nav-right {
+            display: flex;
+            font-size: 18px;
+            gap: 2rem;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-left">
+            <span>Admin Panel</span>
+        </div>
+        <div class="nav-right">
+            <a href="adminpanel.html">Home</a>
+            <a id="logoutBtn" href="login.html">Logout</a>
+        </div>
+        
+    </div>
+
+    <div class="container">
+        <h1>Offers Management</h1>
+
+        <!-- Offers Management -->
+        <button class="btn" id="addOfferBtn">Add Offer</button>
+        <div id="message"></div>
+
+        <!-- List of Restaurants and Offers -->
+        <div class="restaurant-list" id="restaurantList">
+            <!-- Restaurants and offers will be loaded here dynamically -->
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Updating Offer -->
+    <div class="modal" id="offerModal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Add Offer</h2>
+            <label for="restaurantSelect">Select Restaurant</label>
+            <select id="restaurantSelect" required>
+                <option value="">Select Restaurant</option>
+                <!-- Restaurant options will be loaded here dynamically -->
+            </select>
+            <label for="offerTitle">Offer Title</label>
+            <input type="text" id="offerTitle" placeholder="Offer Title" required>
+            <label for="offerDescription">Offer Description</label>
+            <textarea id="offerDescription" placeholder="Offer Description" required></textarea>
+            <label for="offerDiscount">Discount Percentage</label>
+            <input type="number" id="offerDiscount" placeholder="Discount Percentage" min="0" max="100" required>
+            <label for="offerStartDate">Start Date</label>
+            <input type="datetime-local" id="offerStartDate" required>
+            <label for="offerEndDate">End Date</label>
+            <input type="datetime-local" id="offerEndDate" required>
+            <input type="hidden" id="offerId">
+            <button class="btn" id="saveOfferBtn">Save</button>
+        </div>
+    </div>
+
+    <script>
+        const restaurantList = document.getElementById('restaurantList');
+        const offerModal = document.getElementById('offerModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const saveOfferBtn = document.getElementById('saveOfferBtn');
+        const addOfferBtn = document.getElementById('addOfferBtn');
+        const messageDiv = document.getElementById('message');
+        const token = localStorage.getItem('jwt');
+    
+        const offerTitle = document.getElementById('offerTitle');
+        const offerDescription = document.getElementById('offerDescription');
+        const offerDiscount = document.getElementById('offerDiscount');
+        const offerStartDate = document.getElementById('offerStartDate');
+        const offerEndDate = document.getElementById('offerEndDate');
+        const restaurantSelect = document.getElementById('restaurantSelect');
+        const offerIdInput = document.getElementById('offerId');
+    
+        let isUpdate = false;
+        let currentOfferId = null;
+    
+        // Fetch and display all restaurants and their offers
+        async function loadRestaurantsAndOffers() {
+            try {
+                const response = await fetch('http://localhost:5786/api/restaurants', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (response.ok) {
+                    const restaurants = await response.json();
+                    restaurantList.innerHTML = '';
+                    restaurantSelect.innerHTML = '<option value="">Select Restaurant</option>';
+    
+                    for (const restaurant of restaurants) {
+                        const restaurantItem = document.createElement('div');
+                        restaurantItem.classList.add('restaurant-item');
+                        restaurantItem.innerHTML = `<h3>${restaurant.name}</h3>`;
+    
+                        // Fetch offers for each restaurant
+                        const offerResponse = await fetch(`http://localhost:5786/api/admin/offers/restaurant/${restaurant.id}`, {
+                            headers: {
+                                'Authorization': `Bearer ${token}`
+                            }
+                        });
+                        if (offerResponse.ok) {
+                            const offers = await offerResponse.json();
+                            if (offers.offers.length > 0) {
+                                offers.offers.forEach(offer => {
+                                    const offerItem = document.createElement('div');
+                                    offerItem.classList.add('offer-item');
+                                    offerItem.innerHTML = `
+                                        <span>${offer.title} - ${offer.discountPercentage}%</span>
+                                        <div class="offer-actions">
+                                            <button class="btn" onclick="editOffer(${offer.id}, ${restaurant.id})">Edit</button>
+                                            <button class="btn btn-delete" onclick="deleteOffer(${offer.id})">Delete</button>
+                                        </div>
+                                    `;
+                                    restaurantItem.appendChild(offerItem);
+                                });
+                            } else {
+                                const noOfferItem = document.createElement('div');
+                                noOfferItem.classList.add('offer-item');
+                                noOfferItem.innerHTML = `<span>No offers found.</span>`;
+                                restaurantItem.appendChild(noOfferItem);
+                            }
+                        } else {
+                            const noOfferItem = document.createElement('div');
+                            noOfferItem.classList.add('offer-item');
+                            noOfferItem.innerHTML = `<span>Failed to load offers.</span>`;
+                            restaurantItem.appendChild(noOfferItem);
+                        }
+    
+                        restaurantList.appendChild(restaurantItem);
+    
+                        // Add restaurant to the select dropdown
+                        const option = document.createElement('option');
+                        option.value = restaurant.id;
+                        option.textContent = restaurant.name;
+                        restaurantSelect.appendChild(option);
+                    }
+                } else {
+                    restaurantList.innerHTML = '<p>No restaurants found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading restaurants and offers:', error);
+                restaurantList.innerHTML = '<p>Failed to load restaurants.</p>';
+            }
+        }
+    
+        // Open modal to add new offer
+        addOfferBtn.addEventListener('click', () => {
+            isUpdate = false;
+            offerTitle.value = '';
+            offerDescription.value = '';
+            offerDiscount.value = '';
+            offerStartDate.value = '';
+            offerEndDate.value = '';
+            restaurantSelect.value = '';
+            offerIdInput.value = '';
+            modalTitle.textContent = 'Add Offer';
+            offerModal.style.display = 'flex';
+        });
+    
+        // Close modal when clicked outside of it
+        window.addEventListener('click', (event) => {
+            if (event.target === offerModal) {
+                offerModal.style.display = 'none';
+            }
+        });
+    
+        // Edit offer
+        async function editOffer(offerId, restaurantId) {
+            try {
+                const response = await fetch(`http://localhost:5786/api/admin/offers/${offerId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (response.ok) {
+                    const offer = await response.json();
+                    offerTitle.value = offer.title;
+                    offerDescription.value = offer.description;
+                    offerDiscount.value = offer.discountPercentage;
+                    offerStartDate.value = new Date(offer.startDate).toISOString().slice(0, 16);
+                    offerEndDate.value = new Date(offer.endDate).toISOString().slice(0, 16);
+                    restaurantSelect.value = restaurantId;
+                    offerIdInput.value = offer.id;
+                    modalTitle.textContent = 'Edit Offer';
+                    offerModal.style.display = 'flex';
+                    isUpdate = true;
+                    currentOfferId = offerId;
+                } else {
+                    console.error('Failed to fetch offer details:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching offer details:', error);
+            }
+        }
+    
+        // Save offer (add/update)
+        saveOfferBtn.addEventListener('click', async () => {
+    const title = offerTitle.value;
+    const description = offerDescription.value;
+    const discountPercentage = offerDiscount.value;
+    const startDate = offerStartDate.value;
+    const endDate = offerEndDate.value;
+    const restaurantId = restaurantSelect.value;
+    const offerId = offerIdInput.value;
+
+    if (!restaurantId) {
+        showMessage('Please select a restaurant.', 'error');
+        return;
+    }
+
+    const offerData = {
+        title,
+        description,
+        discountPercentage,
+        startDate,
+        endDate
+    };
+
+    try {
+        const response = await fetch(isUpdate ? 
+            `http://localhost:5786/api/admin/offers/${offerId}` : 
+            `http://localhost:5786/api/admin/offers/restaurant/${restaurantId}`, {
+            method: isUpdate ? 'PUT' : 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(offerData)
+        });
+
+        if (response.ok) {
+            offerModal.style.display = 'none';
+            loadRestaurantsAndOffers();
+            showMessage(isUpdate ? 'Offer updated successfully!' : 'Offer added successfully!', 'success');
+        } else {
+            const errorData = await response.json();
+            console.error('Failed to save offer:', errorData.message || response.statusText);
+            showMessage(`Failed to save offer: ${errorData.message || 'Please try again.'}`, 'error');
+        }
+    } catch (error) {
+        console.error('Error saving offer:', error);
+        showMessage('Error saving offer. Please try again.', 'error');
+    }
+});
+
+        // Delete offer
+        async function deleteOffer(offerId) {
+            if (confirm('Are you sure you want to delete this offer?')) {
+                try {
+                    const response = await fetch(`http://localhost:5786/api/admin/offers/${offerId}`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+    
+                    if (response.ok) {
+                        loadRestaurantsAndOffers();
+                        showMessage('Offer deleted successfully!', 'success');
+                    } else {
+                        console.error('Failed to delete offer:', response.statusText);
+                        showMessage('Failed to delete offer. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error deleting offer:', error);
+                    showMessage('Error deleting offer. Please try again.', 'error');
+                }
+            }
+        }
+    
+        // Show success or error message
+        function showMessage(message, type) {
+            messageDiv.textContent = message;
+            messageDiv.className = type === 'success' ? 'success-message' : 'error-message';
+            setTimeout(() => {
+                messageDiv.textContent = '';
+                messageDiv.className = '';
+            }, 3000);
+        }
+    
+        // Initial load
+        loadRestaurantsAndOffers();
+    </script>
+    
+</body>
+</html>

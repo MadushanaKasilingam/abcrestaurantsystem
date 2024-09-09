@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Our Restaurants</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #f3961c;
+            --secondary-color: #2e2e2e;
+            --background-color: #f8f9fa;
+            --white: #ffffff;
+            --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.5rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:'Times New Roman', Times, serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: black;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  background: #3b141c;
+  height: 90px;
+  
+}
+
+.nav {
+  max-width: var(--site-max-width);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.nav-logo .logo-image {
+  height: 50px; /* Adjust height as needed */
+  width: auto;  /* Maintains aspect ratio */
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the Home button */
+.nav-home-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-left: 20px;
+  color: #fff;
+  background-color: #3b141c;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 22px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the Home button */
+.nav-home-button:hover {
+  background-color: #f3961c;
+}
+
+        h1 {
+            text-align: center;
+            color: #3b141c;
+            font-family: "Lobster", sans-serif;
+            font-size: 55px;
+            margin-bottom: 2rem;
+            margin-top: 6rem;
+        }
+        
+
+        .restaurant {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .restaurant img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+        }
+
+        .restaurant h2 {
+            margin-top: 1rem;
+            color: black;
+            font-size: 2rem;
+        }
+
+        .restaurant p {
+            margin: 0.5rem 0;
+            color:black;
+        }
+
+        .address,
+        .contact-info {
+            font-size: 1rem;
+            color:black;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .open-status {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .open-status.open {
+            color: #28a745;
+        }
+
+        .buttons {
+            margin-top: 1rem;
+        }
+
+        .buttons button {
+            margin-right: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .buttons button:hover {
+            background-color: #3b141c;
+        }
+
+        .details {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f1f1f1;
+            border-radius: var(--border-radius);
+            display: none;
+        }
+
+        .details img {
+            margin: 0.5rem;
+            max-width: 100px;
+            border-radius: var(--border-radius);
+        }
+
+        
+
+
+    </style>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="ABC Restaurant Logo" class="logo-image">
+            </a>
+            <div class="nav-right">
+              <a href="index.html" class="nav-home-button">Home</a>
+          </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Explore Our Restaurants</h1>
+        <div id="restaurants">
+            <!-- Restaurant details will be inserted here by JavaScript -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const token = "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MjUzNTgwMjQsImV4cCI6MTc1Njg5NDAyNCwidXNlcm5hbWUiOiJtYWR1ayIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.InyECnUUBrkGUOMqyst_LSvvQNYgF3jHbe_2eNk78PCUw4Urrzgm-kVRvM1vZgtA";
+
+            fetch('http://localhost:5786/api/restaurants', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch restaurant data. Please check your authentication.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const restaurantsContainer = document.getElementById('restaurants');
+                    data.forEach(restaurant => {
+                        const restaurantDiv = document.createElement('div');
+                        restaurantDiv.className = 'restaurant';
+
+                        // Create image element
+                        //const image = document.createElement('img');
+                        //image.src = restaurant.images ? restaurant.images[0] : 'https://via.placeholder.com/400x300';
+                        //image.alt = restaurant.name;
+                        //restaurantDiv.appendChild(image);
+
+                        // Add restaurant name
+                        const name = document.createElement('h2');
+                        name.textContent = restaurant.name;
+                        restaurantDiv.appendChild(name);
+
+                        // Add description
+                        const description = document.createElement('p');
+                        description.textContent = `Description: ${restaurant.description}`;
+                        restaurantDiv.appendChild(description);
+
+                        // Add cuisine type
+                        const cuisineType = document.createElement('p');
+                        cuisineType.textContent = `Cuisine Type: ${restaurant.cuisineType}`;
+                        restaurantDiv.appendChild(cuisineType);
+
+                        // Add address
+                        const address = document.createElement('div');
+                        address.className = 'address';
+                        address.innerHTML = `
+                           
+                            <span>Street Address: ${restaurant.address.streetAddress}</span>
+                            <span>City: ${restaurant.address.city}</span>
+                            
+                        `;
+                        restaurantDiv.appendChild(address);
+
+                        // Add contact information
+                        const contactInfo = document.createElement('div');
+                        contactInfo.className = 'contact-info';
+                        contactInfo.innerHTML = `
+                            <span>Mobile: ${restaurant.contactInformation.mobile}</span>
+                            <span>Email: <a href="mailto:${restaurant.contactInformation.email}">${restaurant.contactInformation.email}</a></span>
+                            <span>Twitter: <a href="${restaurant.contactInformation.twitter}" target="_blank">${restaurant.contactInformation.twitter}</a></span>
+                            <span>Instagram: <a href="${restaurant.contactInformation.instagram}" target="_blank">${restaurant.contactInformation.instagram}</a></span>
+                        `;
+                        restaurantDiv.appendChild(contactInfo);
+
+                        // Add opening hours
+                        const openingHours = document.createElement('p');
+                        openingHours.textContent = `Opening Hours: ${restaurant.openingHours}`;
+                        restaurantDiv.appendChild(openingHours);
+
+
+
+                        // Add open status
+                        const openStatus = document.createElement('p');
+                        openStatus.className = 'open-status';
+                        openStatus.textContent = restaurant.open ? 'Open Now' : 'Closed';
+                        if (restaurant.open) {
+                            openStatus.classList.add('open');
+                        }
+                        restaurantDiv.appendChild(openStatus);
+
+                        // Add buttons
+                        const buttonsDiv = document.createElement('div');
+                        buttonsDiv.className = 'buttons';
+                        buttonsDiv.innerHTML = `
+                            <button class="menu-btn">Foods with prices</button>
+                            <button class="offers-btn">Offers</button>
+                            <button class="facilities-btn">Facilities</button>
+                            <button class="gallery-btn">Gallery</button>
+                        `;
+                        restaurantDiv.appendChild(buttonsDiv);
+
+                        // Add details section
+                        const detailsDiv = document.createElement('div');
+                        detailsDiv.className = 'details';
+                        restaurantDiv.appendChild(detailsDiv);
+
+                        // Event listeners for buttons
+                        buttonsDiv.querySelector('.menu-btn').addEventListener('click', function () {
+                            detailsDiv.style.display = 'block';
+                            detailsDiv.textContent = `Loading menu for ${restaurant.name}...`;
+                            fetch(`http://localhost:5786/api/food/restaurant/${restaurant.id}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (Array.isArray(data)) {
+                                        detailsDiv.innerHTML = data.map(item => `<p>${item.name} - ${item.price}</p>`).join('');
+                                    } else {
+                                        detailsDiv.textContent = `Unexpected response format for menu: ${JSON.stringify(data)}`;
+                                    }
+                                })
+                                .catch(error => {
+                                    detailsDiv.textContent = `Failed to load menu: ${error.message}`;
+                                });
+                        });
+
+                        buttonsDiv.querySelector('.offers-btn').addEventListener('click', function () {
+                            detailsDiv.style.display = 'block';
+                            detailsDiv.textContent = `Loading offers for ${restaurant.name}...`;
+                            fetch(`http://localhost:5786/api/admin/offers/restaurant/${restaurant.id}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data.offers && Array.isArray(data.offers)) {
+                                        detailsDiv.innerHTML = data.offers.map(offer => `
+                                            <div class="offer">
+                                                <h3>${offer.title}</h3>
+                                                <p>${offer.description}</p>
+                                                <p>Discount: ${offer.discountPercentage}%</p>
+                                                <p>Valid from ${new Date(offer.startDate).toLocaleDateString()} to ${new Date(offer.endDate).toLocaleDateString()}</p>
+                                            </div>
+                                        `).join('');
+                                    } else {
+                                        detailsDiv.textContent = `Unexpected response format for offers: ${JSON.stringify(data)}`;
+                                    }
+                                })
+                                .catch(error => {
+                                    detailsDiv.textContent = `Failed to load offers: ${error.message}`;
+                                });
+                        });
+
+
+                        buttonsDiv.querySelector('.facilities-btn').addEventListener('click', function () {
+                            detailsDiv.style.display = 'block';
+                            detailsDiv.textContent = `Loading facilities for ${restaurant.name}...`;
+                            fetch(`http://localhost:5786/api/facility/restaurant/${restaurant.id}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': `Bearer ${token}`,
+                                    'Content-Type': 'application/json'
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    if (data && Array.isArray(data.data)) {
+                                        detailsDiv.innerHTML = data.data.map(facility => `
+                                            <div class="facility">
+                                                <strong>${facility.name}</strong>: ${facility.description || 'No description available'}
+                                            </div>
+                                        `).join('');
+                                    } else {
+                                        detailsDiv.textContent = `Unexpected response format for facilities: ${JSON.stringify(data)}`;
+                                    }
+                                })
+                                .catch(error => {
+                                    detailsDiv.textContent = `Failed to load facilities: ${error.message}`;
+                                });
+                        });
+
+                        buttonsDiv.querySelector('.gallery-btn').addEventListener('click', function () {
+    detailsDiv.style.display = 'block';
+    detailsDiv.textContent = `Loading gallery for ${restaurant.name}...`;
+
+    fetch(`http://localhost:5786/api/admin/gallery/restaurant/${restaurant.id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);  // Check the structure of the response
+        if (Array.isArray(data)) {
+            if (data.length > 0) {
+                detailsDiv.innerHTML = data.map(image => 
+                    `<img src="${image.url || 'default-image-url'}"  style="width:100px; height:100px; margin:5px;">`
+                ).join('');
+            } else {
+                detailsDiv.textContent = 'No images found for this restaurant.';
+            }
+        } else {
+            detailsDiv.textContent = `Unexpected response format for gallery: ${JSON.stringify(data)}`;
+        }
+    })
+    .catch(error => {
+        detailsDiv.textContent = `Failed to load gallery: ${error.message}`;
+    });
+});
+
+restaurantsContainer.appendChild(restaurantDiv);
+
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching restaurant data:', error);
+                });
+        });
+        
+    </script>
+</body>
+
+</html>

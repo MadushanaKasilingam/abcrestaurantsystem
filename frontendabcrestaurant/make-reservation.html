@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Make Reservation</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+            background:  #3b141c;
+        }
+        .nav {
+            max-width: var(--site-max-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .nav-logo .logo-image {
+            height: 50px; /* Adjust height as needed */
+            width: auto;  /* Maintains aspect ratio */
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        /* Style for the Home button */
+        .nav-home-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-left: 20px;
+            color: #fff;
+            background-color: #3b141c;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 22px;
+            transition: background-color 0.3s ease;
+        }
+        /* Hover effect for the Home button */
+        .nav-home-button:hover {
+            background-color: #f3961c;
+        }
+        /* Hero Section */
+        .hero {
+            background-image: url('images/tablereservation.avif');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin-top: 90px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            position: relative;
+            font-family: "Lobster", cursive;
+            font-size: 50px;
+            color: black;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: -100px auto 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Attractive Notes Section */
+        .notes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .note {
+            flex: 1 1 30%;
+            background-color: #fdf3e7;
+            padding: 20px;
+            margin: 10px;
+            border-left: 5px solid #f3961c;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .note h3 {
+            margin-top: 0;
+            color: #f3961c;
+        }
+
+        .note p {
+            margin: 10px 0 0 0;
+        }
+
+        /* Images Section */
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .images img {
+            width: 32%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #3b141c;
+            font-family: "Lobster", cursive;
+            font-size: 45px;
+            margin-bottom: 2rem;
+        }
+
+        /* Button Styling */
+        .btn {
+            background-color: #f3961c;
+            color: white;
+            display: block;
+            border-radius: .5rem;
+            margin-top: 1rem;
+            font-size: 17px;
+            padding: 1rem 3rem;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d87c14;
+        }
+
+        /* Restaurant List */
+        .restaurant-list {
+            margin-top: 20px;
+        }
+
+        .restaurant-item {
+            display: flex;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .restaurant-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .restaurant-item p {
+            margin: 0 0 10px 0;
+            flex: 1;
+        }
+
+        /* Messages */
+        .error-message,
+        .success-message {
+            color: #3b141c;
+            font-size: 16px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            display: none;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .reservation-form h2 {
+            margin-top: 0;
+            color: #f3961c;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #f3961c;
+            outline: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .notes, .images {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .note, .images img {
+                width: 90%;
+            }
+
+            .restaurant-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .restaurant-item img {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    <!-- Add jwt-decode library -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="ABC Restaurant Logo" class="logo-image">
+            </a>
+            <div class="nav-right">
+              <a href="index.html" class="nav-home-button">Home</a>
+          </div>
+        </nav>
+    </header>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Reserve Your Table Today</h1>
+    </div>
+
+    <div class="container">
+        <h1>Make a Reservation</h1>
+
+        <!-- Attractive Notes -->
+        <div class="notes">
+            <div class="note">
+                <h3>Exclusive Dining Experience</h3>
+                <p>Enjoy a delightful meal in a cozy and elegant atmosphere tailored just for you.</p>
+            </div>
+            <div class="note">
+                <h3>Easy Online Booking</h3>
+                <p>Reserve your table effortlessly with our user-friendly online reservation system.</p>
+            </div>
+            <div class="note">
+                <h3>Personalized Service</h3>
+                <p>Let us know your preferences and special requests to make your dining experience perfect.</p>
+            </div>
+        </div>
+
+        <!-- Images Section -->
+        <div class="images">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dining Table">
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior">
+            <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Delicious Food">
+        </div>
+
+        <!-- List of Restaurants -->
+        <div class="restaurant-list" id="restaurantList">
+            <!-- Restaurants will be loaded here dynamically -->
+        </div>
+
+        <!-- Reservation Form -->
+        <div class="reservation-form" id="reservationForm">
+            <h2>Reservation Form</h2>
+
+            <!-- Restaurant -->
+            <div class="form-group">
+                <label for="selectRestaurant">Select Restaurant</label>
+                <select id="selectRestaurant" name="restaurantId"></select>
+            </div>
+
+            <!-- Dine-in Table -->
+            <div class="form-group">
+                <label for="selectTable">Select Table</label>
+                <select id="selectTable" name="dineinTableId"></select>
+            </div>
+
+            <!-- Reservation Time -->
+            <div class="form-group">
+                <label for="reservationTime">Reservation Time</label>
+                <input type="datetime-local" id="reservationTime" name="reservationTime" required>
+            </div>
+
+            <!-- Number of Guests -->
+            <div class="form-group">
+                <label for="numberOfGuests">Number of Guests</label>
+                <input type="number" id="numberOfGuests" name="numberOfGuests" min="1" required>
+            </div>
+
+            <!-- Special Requests -->
+            <div class="form-group">
+                <label for="specialRequests">Special Requests</label>
+                <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requests?"></textarea>
+            </div>
+
+            <!-- End Time -->
+            <div class="form-group">
+                <label for="endTime">End Time</label>
+                <input type="datetime-local" id="endTime" name="endTime" required>
+            </div>
+
+            <button class="btn" onclick="submitReservation()">Submit Reservation</button>
+        </div>
+
+        <!-- Success and Error Messages -->
+        <div class="success-message" id="successMessage" style="display: none;"></div>
+        <div class="error-message" id="errorMessage" style="display: none;"></div>
+    </div>
+
+    <script>
+        const restaurantList = document.getElementById('restaurantList');
+        const reservationForm = document.getElementById('reservationForm');
+        const selectRestaurant = document.getElementById('selectRestaurant');
+        const selectTable = document.getElementById('selectTable');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const token = localStorage.getItem('jwt');
+
+        // Function to decode the JWT and get the user ID
+        function getUserIdFromJwtToken() {
+            if (token) {
+                const decodedToken = jwt_decode(token);
+                return decodedToken?.id || null;
+            }
+            return null;
+        }
+
+        const userId = getUserIdFromJwtToken();
+
+        // Function to load restaurants
+        async function loadRestaurants() {
+            try {
+                const response = await fetch('http://localhost:5786/api/restaurants', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const restaurants = await response.json();
+                    selectRestaurant.innerHTML = '';
+                    restaurantList.innerHTML = '';
+
+                    if (restaurants.length > 0) {
+                        restaurants.forEach(restaurant => {
+                            const option = document.createElement('option');
+                            option.value = restaurant.id;
+                            option.textContent = restaurant.name;
+                            selectRestaurant.appendChild(option);
+
+                            const restaurantItem = document.createElement('div');
+                            restaurantItem.classList.add('restaurant-item');
+                            restaurantItem.innerHTML = `
+                               
+                                <div>
+                                    <h3>Book your table in ${restaurant.name}</h3>
+                                    <p>${restaurant.description || "No description available."}</p>
+                                    <button class="btn" onclick="makeReservation(${restaurant.id})">Reserve a Table</button>
+                                </div>
+                            `;
+                            restaurantList.appendChild(restaurantItem);
+                        });
+                    } else {
+                        restaurantList.innerHTML = '<p>No restaurants found.</p>';
+                    }
+                } else {
+                    restaurantList.innerHTML = '<p>Failed to load restaurants.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading restaurants:', error);
+                restaurantList.innerHTML = '<p>Failed to load restaurants.</p>';
+            }
+        }
+
+        // Function to load tables for a selected restaurant
+        async function loadTables(restaurantId) {
+            try {
+                const response = await fetch(`http://localhost:5786/api/tables/by-restaurant/${restaurantId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const tables = await response.json();
+                    selectTable.innerHTML = '';
+
+                    if (tables.length > 0) {
+                        tables.forEach(table => {
+                            const option = document.createElement('option');
+                            option.value = table.id;
+                            option.textContent = `Table ${table.tableNumber} (${table.seats} seats)`;
+                            selectTable.appendChild(option);
+                        });
+                    } else {
+                        selectTable.innerHTML = '<option value="">No tables available</option>';
+                    }
+                } else {
+                    console.error('Failed to load tables');
+                    selectTable.innerHTML = '<option value="">Failed to load tables</option>';
+                }
+            } catch (error) {
+                console.error('Error loading tables:', error);
+                selectTable.innerHTML = '<option value="">Error loading tables</option>';
+            }
+        }
+
+        // Function to handle reservation
+        function makeReservation(restaurantId) {
+            selectRestaurant.value = restaurantId; // Auto-select the restaurant
+            reservationForm.style.display = 'block';
+            loadTables(restaurantId);
+            // Scroll to reservation form
+            reservationForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to submit reservation
+        async function submitReservation() {
+            const restaurantId = document.getElementById('selectRestaurant').value;
+            const dineinTableId = document.getElementById('selectTable').value;
+            const reservationTime = document.getElementById('reservationTime').value;
+            const numberOfGuests = document.getElementById('numberOfGuests').value;
+            const specialRequests = document.getElementById('specialRequests').value;
+            const paymentStatus = document.getElementById('paymentStatus').value;
+            const endTime = document.getElementById('endTime').value;
+
+            // Basic validation
+            if (!restaurantId || !dineinTableId || !reservationTime || !numberOfGuests || !endTime) {
+                displayError('Please fill in all required fields.');
+                return;
+            }
+
+            const requestBody = {
+                restaurant: {
+                    id: restaurantId
+                },
+                user: {
+                    id: userId
+                },
+                dineinTable: {
+                    id: dineinTableId
+                },
+                reservationTime,
+                numberOfGuests,
+                specialRequests,
+                paymentStatus,
+                endTime
+            };
+
+            try {
+                const response = await fetch('http://localhost:5786/api/reservations', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                if (response.ok) {
+                    displaySuccess('Reservation successful! We look forward to serving you.');
+                    reservationForm.reset();
+                    reservationForm.style.display = 'none';
+                } else {
+                    const errorData = await response.json();
+                    console.error('Error details:', errorData);
+                    displayError(`Failed to make reservation: ${errorData.message || 'Please try again.'}`);
+                }
+            } catch (error) {
+                console.error('Error making reservation:', error);
+                displayError('Error making reservation. Please try again.');
+            }
+        }
+
+        // Function to display success message
+        function displaySuccess(message) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+            // Hide after 5 seconds
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Function to display error message
+        function displayError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            successMessage.style.display = 'none';
+            // Hide after 5 seconds
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize
+        loadRestaurants();
+    </script>
+</body>
+</html>

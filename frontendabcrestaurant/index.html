@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Qwitcher+Grypen:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville+SC&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap" rel="stylesheet">
+    <title>ABC Restaurant Homepage</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header" id="header">
+        <nav class="nav">
+            <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="ABC Restaurant Logo" class="logo-image">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="restaurant-details.html" class="nav-link">Explore Our Restaurants</a></li>
+                <li class="nav-item"><a href="login.html?redirect=make-reservation.html" class="nav-link">Book a table</a></li>
+                <li class="nav-item"><a href="login.html?redirect=submit-query.html" class="nav-link">Contact-Us</a></li>
+                <li class="nav-item"><a href="login.html" class="nav-link">Login</a></li>
+               
+
+                
+            </ul>
+            <i id="open-menu-button" class="fa-solid fa-bars"></i>
+        </nav>
+    </header>
+    
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="section-container">
+            <div class="hero-container">
+                <div class="hero-details">
+                    <h2 class="hero-title">Explore international cuisine </h2>
+                    <h3 class="hero-subtitle">ABC RESTAURANT</h3>
+                    <p class="hero-description">Enjoy the rich history of our cuisine, where tradition meets creativity on every plate.</p>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="images/delicious-food-restaurant-food-top-view-food-with-transparent-background-ai-generative-free-png.png" alt="ABC Restaurant" class="hero-image">
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Cuisine Highlights Section -->
+    <section class="cuisine-highlights" id="cuisine-highlights">
+        <div class="container">
+            <div class="highlight">
+                <h3 class="highlight-title">Exceptional Quality</h3>
+                <p class="highlight-text">Our chefs use only the freshest ingredients to craft dishes that tantalize your taste buds.</p>
+            </div>
+            <div class="highlight">
+                <h3 class="highlight-title">Authentic Experience</h3>
+                <p class="highlight-text">Experience the true essence of our cuisine, inspired by time-honored traditions.</p>
+            </div>
+            <div class="highlight">
+                <h3 class="highlight-title">Innovative Flavors</h3>
+                <p class="highlight-text">We blend classic recipes with modern twists to create unforgettable flavors.</p>
+            </div>
+            <div class="highlight">
+                <h3 class="highlight-title">Unmatched Ambiance</h3>
+                <p class="highlight-text">Enjoy your meal in a setting that complements the rich flavors of our dishes.</p>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const highlights = document.querySelectorAll('.highlight');
+                const options = {
+                    root: null,
+                    rootMargin: '0px',
+                    threshold: 0.1
+                };
+
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, options);
+
+                highlights.forEach(highlight => {
+                    observer.observe(highlight);
+                });
+            });
+        </script>
+    </section>
+
+  
+    
+
+    <!-- Box Section -->
+    <section class="box">
+        <div class="image-section">
+            <img id="slideshow" src="images/box.jpg" alt="Slideshow Image">
+        </div>
+        <div class="text-section">
+            <h1>We offer wonderful flavors</h1>
+            <p>
+                At ABC Restaurant, we take you on a culinary journey with our diverse range of multi-cuisine delights. From the vibrant spices of India to the delicate flavors of Italy, each dish is crafted to tantalize your taste buds and create unforgettable dining experiences. Our chefs use only the finest ingredients to bring you authentic flavors that celebrate the rich tapestry of global cuisine. Discover the world on a plate and savor the extraordinary at ABC Restaurant—where every meal is a masterpiece.
+            </p>
+        </div>
+        <script>
+            const images = [
+  'images/new.avif',
+  'images/food6.avif',
+  'images/food2.jpg',
+  'images/food3.avif',
+  'images/food4.avif'
+];
+
+let currentImageIndex = 0;
+const slideshowElement = document.getElementById('slideshow');
+
+// Function to change the image
+function changeImage() {
+  currentImageIndex = (currentImageIndex + 1) % images.length;
+  slideshowElement.src = images[currentImageIndex];
+}
+
+// Change image every 3 seconds
+setInterval(changeImage, 2000);
+
+        </script>
+    </section>
+
+    <section class="history">
+        <div class="historytext-section">
+            <h1>Our Story: A Taste of Sri Lanka</h1>
+            <p>ABC Restaurant began with a simple idea—bringing people together through food. As a multi-cuisine restaurant with branches across Sri Lanka, we offer a blend of traditional Sri Lankan flavors and international dishes. With each meal, we strive to deliver quality, freshness, and innovation, making every dining experience memorable. From our first location to many across the island, ABC Restaurant continues to celebrate the diversity and richness of cuisine, offering something for everyone.</p>
+        </div>
+        <div class="historyimage-section">
+            <img src="images/pexels-cottonbro-3304057.jpg" alt="Big Image">
+        </div>
+        <script>
+            window.addEventListener('scroll', function() {
+  const historyText = document.querySelector('.historytext-section');
+  const historyImage = document.querySelector('.historyimage-section');
+  
+  const windowHeight = window.innerHeight;
+  const textTop = historyText.getBoundingClientRect().top;
+  const imageTop = historyImage.getBoundingClientRect().top;
+  
+  if (textTop < windowHeight - 100) {
+    historyText.classList.add('in-view');
+  }
+  
+  if (imageTop < windowHeight - 100) {
+    historyImage.classList.add('in-view');
+  }
+});
+
+        </script>
+    </section>
+
+    <section id="special-meals">
+        <h2>Our Special Meals</h2>
+      
+        <div class="meal">
+          <div class="meal-text">
+            <h3>Spaghetti Carbonara</h3>
+            <p>A rich and creamy Italian classic with pancetta and a hint of black pepper.</p>
+          </div>
+          <div class="meal-image">
+            <img src="images/spaghetti-carbonara.avif" alt="Spaghetti Carbonara">
+          </div>
+        </div>
+      
+        <div class="meal reverse">
+          <div class="meal-text">
+            <h3>Chicken Tikka Masala</h3>
+            <p>A flavorful Indian dish with grilled marinated chicken in a spiced curry sauce.</p>
+          </div>
+          <div class="meal-image">
+            <img src="images/chickenmasala.webp" alt="Chicken Tikka Masala">
+          </div>
+        </div>
+      
+        <div class="meal">
+          <div class="meal-text">
+            <h3>Sushi Platter</h3>
+            <p>Fresh sushi assortment with sashimi, nigiri, and rolls, served with soy sauce and wasabi.</p>
+          </div>
+          <div class="meal-image">
+            <img src="images/sushi.jpg" alt="Sushi Platter">
+          </div>
+        </div>
+      
+        <div class="meal reverse">
+          <div class="meal-text">
+            <h3>Beef Bourguignon</h3>
+            <p>A slow-cooked French beef stew with red wine, mushrooms, and garlic, served over mashed potatoes.</p>
+          </div>
+          <div class="meal-image">
+            <img src="images/Beef-Bourguignon.jpg" alt="Beef Bourguignon">
+          </div>
+        </div>
+      
+        <div class="meal">
+          <div class="meal-text">
+            <h3>Pad Thai</h3>
+            <p>A popular Thai stir-fried rice noodle dish with shrimp, peanuts, and fresh lime.</p>
+          </div>
+          <div class="meal-image">
+            <img src="images/Pad-Thai.jpg" alt="Pad Thai">
+          </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const meals = document.querySelectorAll(".meal");
+              let observer = new IntersectionObserver(
+                (entries) => {
+                  entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                      entry.target.style.opacity = 1;
+                      entry.target.style.transform = "translateY(0)";
+                    }
+                  });
+                },
+                { threshold: 0.3 }
+              );
+          
+              meals.forEach((meal) => {
+                observer.observe(meal);
+              });
+            });
+          </script>
+          
+      </section>
+
+    
+  
+    
+ <!-- Search Facility Section -->
+ <div class="facility-section">
+    <h2 class="facility-title">Discover What We Offer</h2>
+    <p class="facility-text">From cozy corners to vibrant spaces, find the perfect spot with the amenities you love.</p>
+    <form class="facility-search-form" id="facility-search-form">
+        <input type="text" id="facility-keyword" placeholder="Search for facilities..." aria-label="Search for facilities">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <div id="facility-results" class="facility-results"></div>
+</div>
+</section>
+        
+
+       
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="section-container">
+          <div class="footer-section">
+            <div class="footer-copyright">
+              <p>© 2024 ABC Restaurant</p>
+            </div>
+            <div class="footer-social-media">
+              <div class="social-icon">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+              </div>
+            </div>
+            <div class="footer-policies">
+              <span>•</span>
+              <a href="privacy.html">Privacy policy</a>
+              
+           
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- Swiper.js Script -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            spaceBetween: 10,
+            centeredSlides: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Handle search facility with JWT token
+        document.getElementById('facility-search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const keyword = document.getElementById('facility-keyword').value;
+    const token = "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MjUzOTEzODksImV4cCI6MTc1NjkyNzM4OSwidXNlcm5hbWUiOiJtYWR1ayIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiJ9.oPwZ1MNIQp5InPZPGm7gs1i75VauJ-79bT_B6iNHlV6fG91Q6YOe0_g5uDuGU4Xc"; // Replace with your JWT token
+
+    fetch('http://localhost:5786/api/facility/search?keyword=' + encodeURIComponent(keyword), {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Received data:', data);
+        const resultsContainer = document.getElementById('facility-results');
+        resultsContainer.innerHTML = '';
+        if (data.data && data.data.length > 0) {
+            data.data.forEach(facility => {
+                const facilityDiv = document.createElement('div');
+                facilityDiv.classList.add('facility-item');
+                facilityDiv.innerHTML = `
+                    <h3>Restaurant: ${facility.restaurantName}</h3>
+                    <h4>Facility: ${facility.facilityName}</h4>
+                    <p>Description: ${facility.facilityDescription}</p>
+                `;
+                resultsContainer.appendChild(facilityDiv);
+            });
+        } else {
+            resultsContainer.innerHTML = '<p>No facilities found.</p>';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching facilities:', error);
+        const resultsContainer = document.getElementById('facility-results');
+        resultsContainer.innerHTML = '<p>Error fetching facilities. Please try again later.</p>';
+    });
+});
+
+
+
+    </script>
+</body>
+</html>

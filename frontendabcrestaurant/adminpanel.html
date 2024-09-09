@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #3b141c;
+            --secondary-color: #f3961c;
+            --light-gray-color: #f2f2f2;
+            --medium-gray-color: #444242;
+        }
+
+        body {
+            background-color: var(--light-gray-color);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            margin-bottom: 30px;
+            background-color: var(--primary-color);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            background-color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .card-text {
+            color: var(--medium-gray-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .btn-primary:hover {
+            background-color: #e68a1e;
+            border-color: #e68a1e;
+        }
+
+        .display-4 {
+            color: var(--primary-color);
+            font-family: "Lobster", sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .col-md-4 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-wrapper {
+            width: 100%;
+        }
+    </style>
+    <script>
+        function logout() {
+            // Optionally, you can clear session storage or local storage here
+            // localStorage.clear();
+            // sessionStorage.clear();
+
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="main-link" class="nav-link" href="index.html">Go to Main</a>
+                </li>
+                <li class="nav-item">
+                    <a id="logout-link" class="nav-link" href="#" onclick="logout()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="text-center">
+            <h1 class="display-4">Welcome to Admin Panel</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Staff Management</h5>
+                            <p class="card-text">Manage staff members including adding, updating, and removing staff.</p>
+                            <a href="staff-management.html" class="btn btn-primary">Go to Staff Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Restaurant Management</h5>
+                            <p class="card-text">Manage restaurant details, including adding and updating restaurant information.</p>
+                            <a href="restaurant-management.html" class="btn btn-primary">Go to Restaurant Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Dine-in Table Management</h5>
+                            <p class="card-text">Manage dine-in tables including adding, updating, and removing tables.</p>
+                            <a href="dinein-table-management.html" class="btn btn-primary">Go to Dine-in Table Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Category Management</h5>
+                            <p class="card-text">Manage food categories including adding, updating, and removing categories.</p>
+                            <a href="category-management.html" class="btn btn-primary">Go to Category Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Food Management</h5>
+                            <p class="card-text">Manage food items including adding, updating, and removing food items.</p>
+                            <a href="food-management.html" class="btn btn-primary">Go to Food Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Gallery Management</h5>
+                            <p class="card-text">Manage the restaurant gallery including adding, updating, and removing images.</p>
+                            <a href="gallery-management.html" class="btn btn-primary">Go to Gallery Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Offers Management</h5>
+                            <p class="card-text">Manage restaurant offers and promotions including adding and updating offers.</p>
+                            <a href="offers-management.html" class="btn btn-primary">Go to Offers Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Facilities Management</h5>
+                            <p class="card-text">Manage facilities offered by the restaurant including adding and updating facilities.</p>
+                            <a href="facilities-management.html" class="btn btn-primary">Go to Facilities Management</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- New "View Reservations" container -->
+            <div class="col-md-4">
+                <div class="card-wrapper">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">View Reservations</h5>
+                            <p class="card-text">View table reservations including viewing reservation details.</p>
+                            <a href="view-reservations.html" class="btn btn-primary">Go to Reservations</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
