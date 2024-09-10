@@ -1,0 +1,196 @@
+ 
+    :root {
+        --primary-color: #f3961c;
+        --secondary-color: #2e2e2e;
+        --background-color: #f8f9fa;
+        --white: #ffffff;
+        --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        --border-radius: 0.5rem;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family:'Times New Roman', Times, serif;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: black;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    .header {
+position: fixed;
+top: 0;
+width: 100%;
+z-index: 5;
+background: #3b141c;
+height: 90px;
+
+}
+
+.nav {
+max-width: var(--site-max-width);
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+margin: 0 auto;
+}
+
+.nav-logo .logo-image {
+height: 50px; /* Adjust height as needed */
+width: auto;  /* Maintains aspect ratio */
+}
+
+.nav-right {
+display: flex;
+align-items: center;
+}
+
+/* Style for the Home button */
+.nav-home-button {
+display: inline-block;
+padding: 10px 20px;
+margin-left: 20px;
+color: #fff;
+background-color: #3b141c;
+text-decoration: none;
+border-radius: 10px;
+font-size: 22px;
+transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the Home button */
+.nav-home-button:hover {
+background-color: #f3961c;
+}
+
+    h1 {
+        text-align: center;
+        color: #3b141c;
+        font-family: "Lobster", sans-serif;
+        font-size: 55px;
+        margin-bottom: 2rem;
+        margin-top: 6rem;
+    }
+    
+
+    .restaurant {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .restaurant img {
+        max-width: 100%;
+        border-radius: var(--border-radius);
+    }
+
+    .restaurant h2 {
+        margin-top: 1rem;
+        color: black;
+        font-size: 2rem;
+    }
+
+    .restaurant p {
+        margin: 0.5rem 0;
+        color:black;
+    }
+
+    .address,
+    .contact-info {
+        font-size: 1rem;
+        color:black;
+    }
+
+    .contact-info a {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .contact-info a:hover {
+        text-decoration: underline;
+    }
+
+    .open-status {
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+
+    .open-status.open {
+        color: #28a745;
+    }
+
+    .buttons {
+        margin-top: 1rem;
+    }
+
+    .buttons button {
+        margin-right: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        background-color: var(--primary-color);
+        color: var(--white);
+        font-size: 1rem;
+    }
+
+    .buttons button:hover {
+        background-color: #3b141c;
+    }
+
+    .details {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #f1f1f1;
+        border-radius: var(--border-radius);
+        display: none;
+    }
+
+    .details img {
+        margin: 0.5rem;
+        max-width: 1000px;
+        border-radius: var(--border-radius);
+    }
+    .gallery-image {
+        width: 350px;  /* Adjust width as per your preference */
+        height: 250px;  /* Maintain aspect ratio */
+        margin: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better appearance */
+        border-radius: 8px; /* Rounded corners */
+        transition: transform 0.3s ease; /* Animation on hover */
+    }
+    
+    .gallery-image:hover {
+        transform: scale(1.1); /* Slight zoom on hover */
+    }
+    
+    #detailsDiv {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* Space between images */
+        padding: 20px;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .gallery-image {
+            width: 100%; /* Make images responsive */
+            max-width: 100%;
+        }
+    }
+    

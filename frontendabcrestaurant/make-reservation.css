@@ -1,0 +1,278 @@
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 5;
+            background:  #3b141c;
+        }
+        .nav {
+            max-width: var(--site-max-width);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 0 auto;
+        }
+        .nav-logo .logo-image {
+            height: 50px; /* Adjust height as needed */
+            width: auto;  /* Maintains aspect ratio */
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+        /* Style for the Home button */
+        .nav-home-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-left: 20px;
+            color: #fff;
+            background-color: #3b141c;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 22px;
+            transition: background-color 0.3s ease;
+        }
+        /* Hover effect for the Home button */
+        .nav-home-button:hover {
+            background-color: #f3961c;
+        }
+        /* Hero Section */
+        .hero {
+            background-image: url('images/tablereservation.avif');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin-top: 90px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            position: relative;
+            font-family: "Lobster", cursive;
+            font-size: 50px;
+            color: black;
+            margin: 0;
+        }
+
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: -100px auto 20px auto;
+            background-color: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Attractive Notes Section */
+        .notes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .note {
+            flex: 1 1 30%;
+            background-color: #fdf3e7;
+            padding: 20px;
+            margin: 10px;
+            border-left: 5px solid #f3961c;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .note h3 {
+            margin-top: 0;
+            color: #f3961c;
+        }
+
+        .note p {
+            margin: 10px 0 0 0;
+        }
+
+        /* Images Section */
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .images img {
+            width: 32%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            height: 200px;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            color: #3b141c;
+            font-family: "Lobster", cursive;
+            font-size: 45px;
+            margin-bottom: 2rem;
+        }
+
+        /* Button Styling */
+        .btn {
+            background-color: #f3961c;
+            color: white;
+            display: block;
+            border-radius: .5rem;
+            margin-top: 1rem;
+            font-size: 17px;
+            padding: 1rem 3rem;
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d87c14;
+        }
+
+        /* Restaurant List */
+        .restaurant-list {
+            margin-top: 20px;
+        }
+
+        .restaurant-item {
+            display: flex;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .restaurant-item h3 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .restaurant-item p {
+            margin: 0 0 10px 0;
+            flex: 1;
+        }
+
+        /* Messages */
+        .error-message,
+        .success-message {
+            color: #3b141c;
+            font-size: 16px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        /* Reservation Form */
+        .reservation-form {
+            display: none;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .reservation-form h2 {
+            margin-top: 0;
+            color: #f3961c;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #f3961c;
+            outline: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .notes, .images {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .note, .images img {
+                width: 90%;
+            }
+
+            .restaurant-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .restaurant-item img {
+                margin-bottom: 10px;
+            }
+        }
+ 
