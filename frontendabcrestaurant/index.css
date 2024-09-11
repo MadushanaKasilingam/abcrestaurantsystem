@@ -669,11 +669,12 @@ ul {
 }
 
 .facility-item {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #ffffff;
+  border: 1px solid #210707;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px;
+ 
   
 }
 

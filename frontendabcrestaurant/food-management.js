@@ -20,6 +20,18 @@
         
         let isUpdate = false;
         let currentFoodId = null;
+
+         // Close modal when close button is clicked
+         closeModalBtn.addEventListener('click', () => {
+            foodModal.style.display = 'none';
+        });
+
+        // Close modal when clicked outside modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === foodModal) {
+                foodModal.style.display = 'none';
+            }
+        });
         
         // Fetch and display all food items grouped by restaurant and category
         async function loadFoods() {

@@ -43,6 +43,16 @@
                         restaurantItem.classList.add('restaurant-item');
                         restaurantItem.innerHTML = `
                             <h3>${restaurant.name}</h3>
+                            <div class="restaurant-details">
+                                <p><strong>Description:</strong> ${restaurant.description}</p>
+                                <p><strong>Cuisine Type:</strong> ${restaurant.cuisineType}</p>
+                                <p><strong>Address:</strong> ${restaurant.address.streetAddress}, ${restaurant.address.city}, ${restaurant.address.stateProvince}, ${restaurant.address.postalCode}, ${restaurant.address.country}</p>
+                                <p><strong>Contact:</strong> Mobile: ${restaurant.contactInformation.mobile}, Email: ${restaurant.contactInformation.email}</p>
+                                <p><strong>Social Media:</strong> Twitter: ${restaurant.contactInformation.twitter}, Instagram: ${restaurant.contactInformation.instagram}</p>
+                                <p><strong>Opening Hours:</strong> ${restaurant.openingHours}</p>
+                                <p><strong>Registration Date:</strong> ${new Date(restaurant.registrationDate).toLocaleString()}</p>
+                                <p><strong>Open:</strong> ${restaurant.open ? 'Yes' : 'No'}</p>
+                            </div>
                             <div class="restaurant-actions">
                                 <button class="btn" onclick="editRestaurant(${restaurant.id})">Edit</button>
                                 <button class="btn btn-delete" onclick="deleteRestaurant(${restaurant.id})">Delete</button>

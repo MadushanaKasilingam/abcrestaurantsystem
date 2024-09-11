@@ -167,7 +167,7 @@ background-color: #f3961c;
         border-radius: var(--border-radius);
     }
     .gallery-image {
-        width: 350px;  /* Adjust width as per your preference */
+        width: 330px;  /* Adjust width as per your preference */
         height: 250px;  /* Maintain aspect ratio */
         margin: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for better appearance */
@@ -186,6 +186,25 @@ background-color: #f3961c;
         gap: 20px; /* Space between images */
         padding: 20px;
     }
+    .menu-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+    }
+    
+    .food-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-right: 15px;
+        border-radius: 10px;
+    }
+    
+    .food-details {
+        display: flex;
+        flex-direction: column;
+    }
+    
     
     @media screen and (max-width: 768px) {
         .gallery-image {

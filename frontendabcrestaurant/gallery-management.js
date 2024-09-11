@@ -119,10 +119,10 @@
                     imageModal.style.display = 'none';
                     loadRestaurantsAndImages();
                 } else {
-                    const errorText = await response.text();
-                    console.error('Failed to save image:', errorText);
-                    messageDiv.innerHTML = `<div class="error-message">Failed to save image: ${response.statusText}</div>`;
+                    const errorData = await response.json();
+                    messageDiv.innerHTML = `<div class="error-message">Failed to save image</div>`;
                 }
+                
             } catch (error) {
                 console.error('Error saving image:', error);
                 messageDiv.innerHTML = '<div class="error-message">An error occurred while saving the image.</div>';

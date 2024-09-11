@@ -24,7 +24,7 @@
             color: white;
             display: block;
             border-radius: .5rem;
-            margin-top: 1rem;
+            margin-top: .4rem;
             font-size: 17px;
             padding: 1rem 3rem;
             font-family: 'Poppins', sans-serif;
@@ -140,5 +140,18 @@
 
         .navbar a:hover {
             text-decoration: underline;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #333;
+        }
+        .close-btn:hover {
+            color: #f3961c;
         }
  

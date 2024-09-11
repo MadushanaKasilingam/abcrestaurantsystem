@@ -49,7 +49,7 @@ async function loadRestaurantsAndOffers() {
                             const offerItem = document.createElement('div');
                             offerItem.classList.add('offer-item');
                             offerItem.innerHTML = `
-                                <span>${offer.title} - ${offer.discountPercentage}%</span>
+                                <span>Title : ${offer.title} <br> <br> DiscountPercentage : ${offer.discountPercentage}% <br> <br> Description : ${offer.description} <br> <br> Offer start date : ${offer.startDate} <br> <br> Offer end date : ${offer.endDate}</span>
                                 <div class="offer-actions">
                                     <button class="btn" onclick="editOffer(${offer.id}, ${restaurant.id})">Edit</button>
                                     <button class="btn btn-delete" onclick="deleteOffer(${offer.id})">Delete</button>

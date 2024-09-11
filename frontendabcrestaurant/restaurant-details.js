@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 restaurantDiv.className = 'restaurant';
 
                 // Create image element
-                //const image = document.createElement('img');
+               // const image = document.createElement('img');
                 //image.src = restaurant.images ? restaurant.images[0] : 'https://via.placeholder.com/400x300';
                 //image.alt = restaurant.name;
                 //restaurantDiv.appendChild(image);

@@ -13,6 +13,26 @@
     
         let isUpdate = false;
         let currentCategoryId = null;
+
+        addCategoryBtn.addEventListener('click', () => {
+            isUpdate = false;
+            categoryName.value = '';
+            restaurantSelect.value = '';
+            categoryIdInput.value = '';
+            categoryModal.style.display = 'flex';
+        });
+
+        // Close modal when close button is clicked
+        closeModalBtn.addEventListener('click', () => {
+            categoryModal.style.display = 'none';
+        });
+
+        // Close modal when clicked outside modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === categoryModal) {
+                categoryModal.style.display = 'none';
+            }
+        });
     
         // Fetch and display all restaurants and their categories
         async function loadRestaurantsAndCategories() {

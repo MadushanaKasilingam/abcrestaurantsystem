@@ -128,7 +128,7 @@
     
             try {
                 const url = isUpdate
-                    ? `http://localhost:5786/api/admin/facility/update/${facilityIdInput.value}`
+                    ? `http://localhost:5786/api/admin/facility/update/${facilityId}`
                     : 'http://localhost:5786/api/admin/facility/create';
                 const method = isUpdate ? 'PUT' : 'POST';
                 const response = await fetch(url, {
