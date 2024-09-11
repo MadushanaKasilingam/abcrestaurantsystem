@@ -30,7 +30,6 @@ public class ReservationController {
             if (reservationService.isDuplicateReservation(reservation)) {
                 return new ResponseEntity<>(new MessageResponse("Duplicate reservation detected"), HttpStatus.CONFLICT);
             }
-
             // Create the reservation
             Reservation createdReservation = reservationService.createReservation(reservation);
 
